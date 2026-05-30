@@ -2,27 +2,23 @@ name: WebHostMost Login
 
 on:
   schedule:
-    # 每月20号的 UTC 时间 00:00 运行
     - cron: '0 0 20 * *'
-  workflow_dispatch:  # 允许手动触发
+  workflow_dispatch:
 
 jobs:
   login:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  # 升级到 v4
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4  # 升级到 v4
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
 
       - name: Install dependencies
-        run: |
-          # 删除可能的 lock 文件确保安装正确版本
-          rm -f package-lock.json
-          npm install
+        run: npm install puppeteer@21.11.0
 
       - name: Run login script
         env:
