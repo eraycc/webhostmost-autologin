@@ -7,6 +7,6 @@
     "start": "node scripts/login.js"
   },
   "dependencies": {
-    "puppeteer": "^21.0.0"
+    "puppeteer": "21.11.0"
   }
 }
