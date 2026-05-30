@@ -1,4 +1,4 @@
-name: WebHostMost Login  
+name: WebHostMost Login
 
 on:
   schedule:
@@ -11,15 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # 升级到 v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4  # 升级到 v4
         with:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install puppeteer@latest
+        run: |
+          # 删除可能的 lock 文件确保安装正确版本
+          rm -f package-lock.json
+          npm install
 
       - name: Run login script
         env:
